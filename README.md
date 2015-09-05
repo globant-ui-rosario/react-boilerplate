@@ -17,4 +17,4 @@
 2.  Run `gulp start-test-server` to see the application tests report. (TBD)
 2.  Open into a browser `http://localhost:5000/` to see the application tests report. (TBD)
 2.  Within every run of the application tests the application tests report will be automatically updated and reflected 
-    into the web display of them. 
+    into the web display. 
