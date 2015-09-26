@@ -1,7 +1,6 @@
 var browserify = require('browserify');
 var browserSync = require('browser-sync');
 var concat = require('gulp-concat');
-var del = require('del');
 var gulp = require('gulp');
 var handlebars = require('gulp-compile-handlebars');
 var reactify = require('reactify');
@@ -10,7 +9,7 @@ var sass = require('gulp-sass');
 var source = require('vinyl-source-stream');
 
 gulp.task('sass', function () {
-    var bundle = gulp.src('sass/main.scss').pipe(sass()).on('error', function (error) {
+    var bundle = gulp.src('./sass/main.scss').pipe(sass()).on('error', function (error) {
         console.log(error);
         this.emit('end');
     });
@@ -19,7 +18,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('js', function () {
-    var bundle = browserify('index.js').transform(reactify).bundle().on('error', function () {
+    var bundle = browserify('./index.js').transform(reactify).bundle().on('error', function (error) {
         console.log(error);
         this.emit('end');
     });
@@ -28,7 +27,7 @@ gulp.task('js', function () {
 });
 
 gulp.task('html', function () {
-    var bundle = gulp.src('html/index.html').pipe(handlebars()).on('error', function (error) {
+    var bundle = gulp.src('./html/index.html').pipe(handlebars()).on('error', function (error) {
         console.log(error);
         this.emit('end');
     });
@@ -45,6 +44,7 @@ gulp.task('browser-sync', function () {
     });
 
     gulp.watch([
+        'index.js',
         'components/**/*.js',
         'libs/**/*.js',
         'views/**/*.js'
